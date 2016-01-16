@@ -39,7 +39,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/entryno"
+        android:id="@+id/editText"
         android:layout_below="@+id/name"
         android:layout_alignLeft="@+id/imageView"
         android:layout_alignStart="@+id/imageView"
@@ -53,15 +53,11 @@
         android:inputType="text" />
 
     <Button
-        style="@android:style/ButtonBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/nextButton"
-        android:textSize="26dp"
-        android:clickable="true"
-        android:background="@android:drawable/ic_media_ff"
-        android:layout_below="@+id/entryno"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true" />
+        android:text="New Button"
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
