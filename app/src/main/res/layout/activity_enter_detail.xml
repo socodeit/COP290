@@ -7,6 +7,78 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.rap.team.enterDetail">
+    tools:context="com.rap.team.enterDetail"
+    android:background="@drawable/world_map">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="250dp"
+        android:id="@+id/imageView"
+        android:background="@drawable/special_agent"
+        android:layout_marginTop="55dp"
+        android:contentDescription="@string/badge"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:textColorHint="#ffffff"
+        android:hint="@string/name"
+        android:ems="10"
+        android:id="@+id/name"
+        android:theme="@style/whiteBottomLine"
+        android:textColor="#fbf8f8"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:layout_marginTop="64dp"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/entryno"
+        android:layout_below="@+id/name"
+        android:layout_alignLeft="@+id/imageView"
+        android:layout_alignStart="@+id/imageView"
+        android:textColorHint="#ffffff"
+        android:hint="@string/entryno"
+        android:textColor="#fdfbfb"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:theme="@style/whiteBottomLine"
+        android:inputType="text" />
+
+    <Button
+        style="@android:style/ButtonBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nextButton"
+        android:textSize="26dp"
+        android:clickable="true"
+        android:background="@android:drawable/ic_media_ff"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:onClick="nextAgent"
+        android:layout_below="@+id/entryno" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/agent"
+        android:id="@+id/enterDetailHead"
+        android:textColor="#35ef20"
+        android:textStyle="bold"
+        android:textSize="35sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/nextButton"
+        android:layout_alignStart="@+id/nextButton"
+        android:theme="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Title.Inverse" />
 
 </RelativeLayout>

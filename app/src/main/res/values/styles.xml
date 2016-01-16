@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="whiteBottomLine">
+        <item name="colorControlNormal">#ffffff</item>
+        <item name="colorControlActivated">#00ff00</item>
+        <item name="colorControlHighlight">#00ff00</item>
+    </style>
 </resources>
