@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TEAM REGISTRATION</string>
+    <string name="badge">SPECIAL AGENT BADGE</string>
+    <string name="name">NAME</string>
+    <string name="entryno">ENTRY NO.</string>
+    <string name="next">NEXT</string>
 </resources>
