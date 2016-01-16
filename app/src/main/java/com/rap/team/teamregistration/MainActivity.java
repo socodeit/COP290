@@ -2,7 +2,7 @@ package com.rap.team.teamregistration;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
+import com.rap.team.teamregistration.R;
 public class MainActivity extends AppCompatActivity {
 
     @Override
