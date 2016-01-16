@@ -15,10 +15,10 @@
         android:layout_height="250dp"
         android:id="@+id/imageView"
         android:background="@drawable/special_agent"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="55dp"
+        android:contentDescription="@string/badge"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="@string/badge" />
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -60,8 +60,22 @@
         android:textSize="26dp"
         android:clickable="true"
         android:background="@android:drawable/ic_media_ff"
-        android:layout_below="@+id/entryno"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/entryno" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="AGENT"
+        android:id="@+id/enterDetailHead"
+        android:textColor="#35ef20"
+        android:textStyle="bold"
+        android:textSize="35sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/nextButton"
+        android:layout_alignStart="@+id/nextButton"
+        android:theme="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Title.Inverse" />
 
 </RelativeLayout>
