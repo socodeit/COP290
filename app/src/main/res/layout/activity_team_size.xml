@@ -67,6 +67,7 @@
             android:id="@+id/button2"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.28" />
+
     </RadioGroup>
 
 </RelativeLayout>
