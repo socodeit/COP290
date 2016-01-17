@@ -25,14 +25,9 @@ public class teamSize extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RadioButton a = (RadioButton) findViewById( rg.getCheckedRadioButtonId());
+                int a = rg.getCheckedRadioButtonId();
                       Bundle bundle =new Bundle();
-                int aa=2;
-                if(a.getText().equals("3 AGENTS"))
-                {
-                    aa=3;
-                }
-                bundle.putInt("teamsize",aa);
+                bundle.putInt("teamsize",a);
                 bundle.putInt("currentmember",1);
                 Intent intent = new Intent(teamSize.this, com.rap.team.enterDetail.class);
                 intent.putExtras(bundle);
