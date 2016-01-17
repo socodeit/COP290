@@ -15,8 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/Topimage"
-            android:src="@drawable/image1"
-            android:scaleType="fitXY" />
+            android:src="@drawable/world_map"
+            android:scaleType="centerCrop" />
     </RelativeLayout>
 
     <RelativeLayout
