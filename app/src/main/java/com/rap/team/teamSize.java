@@ -20,22 +20,11 @@ public class teamSize extends AppCompatActivity {
         setContentView(R.layout.activity_team_size);
         rg = (RadioGroup) findViewById(R.id.radioGroup);
         rg.clearCheck();
-        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int id) {
-                {
-                    RadioButton rbb = (RadioButton) group.findViewById(id);
-                    if (null != rbb && id > -1) {
-                        Toast.makeText(teamSize.this, rbb.getText(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        });
-        Button next = (Button) findViewById(R.id.next);
+
+        Button next = (Button) findViewById(R.id.buttonsize);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 int a = rg.getCheckedRadioButtonId();
                       Bundle bundle =new Bundle();
                 bundle.putInt("teamsize",a);
