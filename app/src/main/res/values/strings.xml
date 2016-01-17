@@ -5,4 +5,6 @@
     <string name="entryno">ENTRY NO.</string>
     <string name="next">NEXT</string>
     <string name="agent">AGENT</string>
+    <string name="confirmHead">Confirm Details</string>
+    <string name="teamsize3">3 agents</string>
 </resources>

@@ -67,7 +67,7 @@ public class enterDetail extends AppCompatActivity {
             public void onClick(View v) {
                 Intent nextActivityBundle;
                 if (currentMember == teamSize)
-                    nextActivityBundle = new Intent(enterDetail.this, status.class);
+                    nextActivityBundle = new Intent(enterDetail.this, confirmDetails.class);
                 else
                     nextActivityBundle = new Intent(enterDetail.this, enterDetail.class);
 
@@ -82,7 +82,7 @@ public class enterDetail extends AppCompatActivity {
                 detail.putInt("teamsize", teamSize);
                 detail.putInt("currentmember", currentMember + 1);
                 detail.putString("name" + Integer.toString(currentMember), name);
-                detail.putString("entryno" + Integer.toString(currentMember), entryno);
+                detail.putString("entry" + Integer.toString(currentMember), entryno);
 
                 nextActivityBundle.putExtras(detail);
 
