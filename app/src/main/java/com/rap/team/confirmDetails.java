@@ -20,6 +20,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class confirmDetails extends AppCompatActivity {
 
     private RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -31,24 +34,38 @@ public class confirmDetails extends AppCompatActivity {
 
         Intent preActivity = getIntent();
         Bundle detail = preActivity.getExtras();
+        final Map<String,String> params = new HashMap<>();
+        final TextView teamName = (TextView)findViewById(R.id.teamName);
+        final TextView name1=(TextView)findViewById(R.id.agent1name);
+        final TextView name2=(TextView)findViewById(R.id.agent2name);
+        final TextView name3=(TextView)findViewById(R.id.agent3name);
+        final TextView entry1=(TextView)findViewById(R.id.agent1entryno);
+        final TextView entry2 = (TextView) findViewById(R.id.agent2entryno);
+        final TextView entry3 = (TextView) findViewById(R.id.agent3entryno);
 
-        TextView name1=(TextView)findViewById(R.id.agent1name);
-        TextView name2=(TextView)findViewById(R.id.agent2name);
-        TextView name3=(TextView)findViewById(R.id.agent3name);
-        TextView entry1=(TextView)findViewById(R.id.agent1entryno);
-        if(detail.getInt("teamsize")==3) {
-            TextView entry2 = (TextView) findViewById(R.id.agent2entryno);
-            TextView entry3 = (TextView) findViewById(R.id.agent3entryno);
-            TextView agent3 = (TextView) findViewById(R.id.agent3);
-            entry2.setText(detail.getString("entry2"));
-            entry3.setText(detail.getString("entry3"));
-            agent3.setText("AGENT 3");
-        }
 
+        teamName.setText(detail.getString("teamname"));
         name1.setText(detail.getString("name1"));
         name2.setText(detail.getString("name2"));
-        name3.setText(detail.getString("name3"));
         entry1.setText(detail.getString("entry1"));
+        entry2.setText(detail.getString("entry2"));
+
+        params.put("teamname",detail.getString("teamname"));
+        params.put("name1",detail.getString("name1"));
+        params.put("entry1",detail.getString("entry1"));
+        params.put("name2",detail.getString("name1"));
+        params.put("entry2",detail.getString("entry1"));
+
+        if (detail.getInt("teamsize") == 3) {
+            TextView agent3 = (TextView) findViewById(R.id.agent3);
+            name3.setText(detail.getString("name3"));
+            entry3.setText(detail.getString("entry3"));
+            agent3.setText("AGENT 3");
+
+            params.put("name3",detail.getString("name1"));
+            params.put("entry3",detail.getString("entry1"));
+        }
+
 
         final String url = "http://agni.iitd.ernet.in/cop290/assign0/register/";
 
@@ -56,7 +73,8 @@ public class confirmDetails extends AppCompatActivity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,url,null,new Response.Listener<JSONObject>(){
+
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,url,new JSONObject(params),new Response.Listener<JSONObject>(){
 
                     @Override
                     public void onResponse(JSONObject response) {
