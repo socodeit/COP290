@@ -18,21 +18,22 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Team Size"
         android:alpha="1"
+        android:textStyle="bold"
         android:id="@+id/total"
-        android:textSize="70dp"
-        android:textColor="#000000"
+        android:textSize="65sp"
+        android:textColor="#35ef20"
         android:layout_gravity="center_vertical"
-        android:layout_marginTop="96dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <Button
+        style="@android:style/ButtonBar"
         android:layout_width="157dp"
         android:layout_height="wrap_content"
-        android:text="NEXT"
-        android:textSize="25dp"
+        android:background="@android:drawable/ic_media_ff"
+        android:textSize="26sp"
+        android:clickable="true"
         android:id="@+id/buttonsize"
-        android:textColor="#000000"
         android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -48,13 +49,14 @@
         android:layout_alignLeft="@+id/total"
         android:layout_alignStart="@+id/total"
         android:layout_below="@+id/total"
-        android:checkedbutton="@+id/2">
+        >
 
         <RadioButton
             android:layout_width="wrap_content"
-            android:layout_height="130dp"
-            android:text="3 agents"
-            android:textSize="35dp"
+            android:layout_height="94dp"
+            android:text="3 AGENTS"
+            android:textSize="35sp"
+            android:textStyle="bold"
             android:textColor="#000000"
             android:id="@+id/button3"
             android:layout_gravity="center_horizontal"
@@ -62,15 +64,44 @@
 
         <RadioButton
             android:layout_width="wrap_content"
-            android:layout_height="61dp"
-            android:text="2 agents"
-            android:textSize="35dp"
+            android:layout_height="96dp"
+            android:text="@string/two"
+            android:textSize="35sp"
+            android:textStyle="bold"
             android:textColor="#000000"
             android:id="@+id/button2"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.28"
-            android:checked="false" />
+            android:checked="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Team Name"
+            android:alpha="1"
+            android:textStyle="bold"
+            android:id="@+id/textView4"
+            android:textSize="60sp"
+            android:textColor="#35ef20"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
 
     </RadioGroup>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/entryno"
+        android:layout_below="@+id/name"
+        android:layout_alignLeft="@+id/imageView"
+        android:layout_alignStart="@+id/imageView"
+        android:textColorHint="#ffffff"
+        android:hint="@string/entryno"
+        android:textColor="#fdfbfb"
+        android:textSize="30sp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:theme="@style/whiteBottomLine"
+        android:inputType="text" />
 
 </RelativeLayout>
