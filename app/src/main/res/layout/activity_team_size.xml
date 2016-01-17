@@ -47,8 +47,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/total"
         android:layout_alignStart="@+id/total"
-        android:layout_below="@+id/total"
-        android:checkedbutton="@+id/2">
+        android:layout_below="@+id/total">
 
         <RadioButton
             android:layout_width="wrap_content"
