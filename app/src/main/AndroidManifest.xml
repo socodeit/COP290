@@ -19,6 +19,7 @@
         <activity android:name="com.rap.team.enterDetail" />
         <activity android:name="com.rap.team.status" />
         <activity android:name="com.rap.team.confirmDetails"/>
+        <activity android:name="com.rap.team.teamSize"/>
     </application>
 
 </manifest>
