@@ -50,12 +50,8 @@ public class enterDetail extends AppCompatActivity {
         Intent intent = getIntent();
 
         detail = intent.getExtras();
-        if (detail != null) {
             currentMember = detail.getInt("currentmember");
             teamSize = detail.getInt("teamsize");
-        } else {
-            detail = new Bundle();
-        }
         TextView heading = (TextView) findViewById(R.id.enterDetailHead);
         heading.setText("AGENT " + Integer.toString(currentMember));
 

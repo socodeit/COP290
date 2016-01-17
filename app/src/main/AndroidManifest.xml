@@ -20,6 +20,7 @@
         <activity android:name="com.rap.team.status" />
         <activity android:name="com.rap.team.confirmDetails"/>
         <activity android:name="com.rap.team.teamSize"/>
+        <uses-permission android:name="android.permission.INTERNET"/>
     </application>
 
 </manifest>
