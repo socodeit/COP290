@@ -23,6 +23,8 @@ import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyLog;
 
+import org.json.JSONException;
+
 import java.io.UnsupportedEncodingException;
 
 /**
@@ -62,7 +64,11 @@ public abstract class JsonRequest<T> extends Request<T> {
 
     @Override
     protected void deliverResponse(T response) {
-        mListener.onResponse(response);
+        try {
+            mListener.onResponse(response);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
