@@ -13,16 +13,18 @@ import org.w3c.dom.Text;
 
 public class confirmDetails extends AppCompatActivity {
 
-    TextView name1=(TextView)findViewById(R.id.agent1name);
-    TextView name2=(TextView)findViewById(R.id.agent2name);
-    TextView name3=(TextView)findViewById(R.id.agent3name);
-    TextView entry1=(TextView)findViewById(R.id.agent1entryno);
-    TextView entry2=(TextView)findViewById(R.id.agent2entryno);
-    TextView entry3=(TextView)findViewById(R.id.agent3entryno);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm_details);
+
+        TextView name1=(TextView)findViewById(R.id.agent1name);
+        TextView name2=(TextView)findViewById(R.id.agent2name);
+        TextView name3=(TextView)findViewById(R.id.agent3name);
+        TextView entry1=(TextView)findViewById(R.id.agent1entryno);
+        TextView entry2=(TextView)findViewById(R.id.agent2entryno);
+        TextView entry3=(TextView)findViewById(R.id.agent3entryno);
 
         Intent preActivity = getIntent();
         Bundle detail = preActivity.getExtras();
