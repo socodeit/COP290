@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.rap.team.teamregistration">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,7 +22,5 @@
         <activity android:name="com.rap.team.status" />
         <activity android:name="com.rap.team.confirmDetails"/>
         <activity android:name="com.rap.team.teamSize"/>
-        <uses-permission android:name="android.permission.INTERNET"/>
     </application>
-
 </manifest>

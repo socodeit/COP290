@@ -34,7 +34,7 @@ public class teamSize extends AppCompatActivity {
                 }
 
                 Bundle bundle =new Bundle();
-                EditText nameField = (EditText) findViewById(R.id.name);
+                EditText nameField = (EditText) findViewById(R.id.teamnam);
                 Editable editable = nameField.getText();
                 String name = editable == null ? "" : editable.toString();
                 bundle.putString("teamname",name);

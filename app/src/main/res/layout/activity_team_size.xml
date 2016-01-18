@@ -10,7 +10,7 @@
     android:alpha="1"
     tools:context="com.rap.team.teamSize"
     android:background="@drawable/a"
-   >
+    >
 
     <TextView
         android:layout_width="wrap_content"

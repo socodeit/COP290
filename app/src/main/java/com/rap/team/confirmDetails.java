@@ -13,6 +13,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.rap.team.teamregistration.R;
 
@@ -25,7 +26,7 @@ import java.util.Map;
 
 public class confirmDetails extends AppCompatActivity {
 
-    private RequestQueue requestQueue = Volley.newRequestQueue(this);
+    //private RequestQueue requestQueue =Volley.newRequestQueue(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +54,8 @@ public class confirmDetails extends AppCompatActivity {
         params.put("teamname",detail.getString("teamname"));
         params.put("name1",detail.getString("name1"));
         params.put("entry1",detail.getString("entry1"));
-        params.put("name2",detail.getString("name1"));
-        params.put("entry2",detail.getString("entry1"));
+        params.put("name2",detail.getString("name2"));
+        params.put("entry2",detail.getString("entry2"));
 
         if (detail.getInt("teamsize") == 3) {
             TextView agent3 = (TextView) findViewById(R.id.agent3);
@@ -62,52 +63,54 @@ public class confirmDetails extends AppCompatActivity {
             entry3.setText(detail.getString("entry3"));
             agent3.setText("AGENT 3");
 
-            params.put("name3",detail.getString("name1"));
-            params.put("entry3",detail.getString("entry1"));
+            params.put("name3",detail.getString("name3"));
+            params.put("entry3",detail.getString("entry3"));
         }
 
 
         final String url = "http://agni.iitd.ernet.in/cop290/assign0/register/";
+        final RequestQueue requestQueue =Volley.newRequestQueue(this);
+
+        final JSONObject data = new JSONObject(params);
+        Toast.makeText(getApplicationContext(),data.toString(),Toast.LENGTH_LONG).show();
 
         Button confirmButton  = (Button)findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,url,new JSONObject(params),new Response.Listener<JSONObject>(){
+                StringRequest stringRequest = new StringRequest(Request.Method.POST,url,new Response.Listener<String>(){
 
                     @Override
-                    public void onResponse(JSONObject response) {
+                    public void onResponse(String response) {
 
-                        try {
-                            String responseMessage = response.getString("RESPONSE_MESSAGE");
 
-                            if(responseMessage.equals("Registration completed")) {
-                                Intent nextActivity = new Intent(confirmDetails.this, status.class);
-                                startActivity(nextActivity);
-                            }
-                            else if(responseMessage.equals("User Already Registered")){
-                                Toast.makeText(getApplicationContext(),"User Already Registered",Toast.LENGTH_SHORT).show();
-                            }
-                            else{
-                                Toast.makeText(getApplicationContext(),"Data not posted!",Toast.LENGTH_SHORT).show();
-                            }
-
-                        } catch (JSONException e) {
-                            Toast.makeText(getApplicationContext(),"Something went wrong 101",Toast.LENGTH_SHORT).show();
+                        if (response.equals("{\"RESPONSE_SUCCESS\": 1, \"RESPONSE_MESSAGE\": \"Registration completed\"}")) {
+                            Intent nextActivity = new Intent(confirmDetails.this, status.class);
+                            startActivity(nextActivity);
+                        } else if (response.equals("{\"RESPONSE_SUCCESS\": 0, \"RESPONSE_MESSAGE\": \"User already registered\"}")) {
+                            Toast.makeText(getApplicationContext(), "User Already Registered", Toast.LENGTH_SHORT).show();
+                        } else if (response.equals("{\"RESPONSE_SUCCESS\": 0, \"RESPONSE_MESSAGE\": \"Data not posted!\"}")) {
+                            Toast.makeText(getApplicationContext(), "Data not posted!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Something went wrong -101", Toast.LENGTH_SHORT).show();
                         }
-
                     }
 
                 },new Response.ErrorListener(){
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(),"Something went wrong 102",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_LONG).show();
                     }
 
-                });
-                requestQueue.add(jsonObjectRequest);
+                }){
+                    @Override
+                    protected Map<String,String> getParams(){
+                        return params;
+                    }
+                };
+                requestQueue.add(stringRequest);
             }
         });
     }
