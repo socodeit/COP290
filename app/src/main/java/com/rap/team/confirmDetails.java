@@ -66,6 +66,10 @@ public class confirmDetails extends AppCompatActivity {
             params.put("name3",detail.getString("name3"));
             params.put("entry3",detail.getString("entry3"));
         }
+        else{
+            params.put("name3","");
+            params.put("entry3","");
+        }
 
 
         final String url = "http://agni.iitd.ernet.in/cop290/assign0/register/";
@@ -74,12 +78,12 @@ public class confirmDetails extends AppCompatActivity {
         final JSONObject data = new JSONObject(params);
         Toast.makeText(getApplicationContext(),data.toString(),Toast.LENGTH_LONG).show();
 
-        Button confirmButton  = (Button)findViewById(R.id.confirmButton);
+        Button confirmButton = (Button) findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                StringRequest stringRequest = new StringRequest(Request.Method.POST,url,new Response.Listener<String>(){
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
 
                     @Override
                     public void onResponse(String response) {
@@ -97,16 +101,16 @@ public class confirmDetails extends AppCompatActivity {
                         }
                     }
 
-                },new Response.ErrorListener(){
+                }, new Response.ErrorListener() {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
                     }
 
-                }){
+                }) {
                     @Override
-                    protected Map<String,String> getParams(){
+                    protected Map<String, String> getParams() {
                         return params;
                     }
                 };
