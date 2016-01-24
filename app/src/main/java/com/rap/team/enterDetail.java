@@ -20,11 +20,13 @@ public class enterDetail extends AppCompatActivity {
 
     int isError(String entry,String name)
     {
+        //For empty name and entry no.
         if(name.length()==0)
             return -200;
         if(entry.length()==0)
             return -300;
 
+        //name must contain letters and numbers only
         for(int i=0;i<name.length();i++)
         {
             if(!Character.isLetter(name.charAt(i)) && name.charAt(i)!=' ')
@@ -35,9 +37,11 @@ public class enterDetail extends AppCompatActivity {
 
         int year=0;
 
+        //Valid length is 11
         if(entry.length() != 11)
             return -1;
 
+        //first 4 characters are number i.e, year
         for(int i=0;i<4;i++)
         {
             if(!Character.isDigit(entry.charAt(i)))
@@ -46,13 +50,15 @@ public class enterDetail extends AppCompatActivity {
                 year  = year*10 + entry.charAt(i)-'0';
         }
 
+        //Next 2 or 3 characters are letters
         for(int i=0;i<2;i++)
         {
             if(!Character.isLetter(entry.charAt(i + 4)))
                 return  -1;
         }
-
         if(!Character.isLetterOrDigit(entry.charAt(6))) return -1;
+
+        //next 5 or 4 characters are digit.
         for(int i=0;i<4;i++)
         {
             if(!Character.isDigit(entry.charAt(i+7)))
@@ -74,15 +80,13 @@ public class enterDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter_detail);
 
+        //Getting details from intent
         Intent intent = getIntent();
-
         detail = intent.getExtras();
-            currentMember = detail.getInt("currentmember");
-            teamSize = detail.getInt("teamsize");
+        currentMember = detail.getInt("currentmember");
+        teamSize = detail.getInt("teamsize");
         TextView heading = (TextView) findViewById(R.id.enterDetailHead);
         heading.setText("AGENT " + Integer.toString(currentMember));
-
-        String error="";
 
         final Button button = (Button) findViewById(R.id.nextButton);
 
@@ -90,26 +94,30 @@ public class enterDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                //Get name from name field.
                 EditText nameField = (EditText) findViewById(R.id.name);
                 Editable editable = nameField.getText();
                 String name = editable == null ? "" : editable.toString();
 
+                //Get entry no from field
                 EditText entrynoField = (EditText) findViewById(R.id.entryno);
                 editable = entrynoField.getText();
                 String entryno = editable == null ? "" : editable.toString();
 
+                //checking if entryno and name are valid or not.
                 if(isError(entryno,name)==1) {
 
                     Intent nextActivityBundle;
+                    //Selecting activity according to currentMember
                     if (currentMember == teamSize)
                         nextActivityBundle = new Intent(enterDetail.this, confirmDetails.class);
                     else
                         nextActivityBundle = new Intent(enterDetail.this, enterDetail.class);
 
                     detail.putInt("teamsize", teamSize);
-                    detail.putInt("currentmember", currentMember + 1);
-                    detail.putString("name" + Integer.toString(currentMember), name);
-                    detail.putString("entry" + Integer.toString(currentMember), entryno);
+                    detail.putInt("currentmember", currentMember + 1);                      //updating currentMember in Bundle detail
+                    detail.putString("name" + Integer.toString(currentMember), name);       //adding name in Bundle detail
+                    detail.putString("entry" + Integer.toString(currentMember), entryno);   //adding entry number in Bundle detail
                     nextActivityBundle.putExtras(detail);
                     startActivity(nextActivityBundle);
 
