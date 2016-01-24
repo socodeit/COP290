@@ -17,38 +17,25 @@ public class enterDetail extends AppCompatActivity {
     int currentMember = 1;      //Member whose detail is going to be entered
     int teamSize = 3;
 
-    //    public void nextAgent(View view)
-//    {
-//        Intent nextActivityBundle;
-//        if(currentMember == teamSize)
-//            nextActivityBundle = new Intent(this,status.class);
-//        else
-//            nextActivityBundle = new Intent(this,enterDetail.class);
-//
-//        EditText nameField=(EditText)findViewById(R.id.name);
-//        Editable editable = nameField.getText();
-//        String name = editable == null ? "" : editable.toString();
-//
-//        EditText entrynoField=(EditText)findViewById(R.id.entryno);
-//        editable = entrynoField.getText();
-//        String entryno = editable == null ? "" : editable.toString();
-//
-//
-//        detail.putInt("currentmember",currentMember+1);
-//        detail.putString("name"+Integer.toString(currentMember),name);
-//        detail.putString("entryno"+Integer.toString(currentMember),entryno);
-//
-//        nextActivityBundle.putExtras(detail);
-//
-//        startActivity(nextActivityBundle);
-//
-//    }
 
-    int isEntryNo(String entry)
+    int isError(String entry,String name)
     {
+        if(name.length()==0)
+            return -200;
+        if(entry.length()==0)
+            return -300;
+
+        for(int i=0;i<name.length();i++)
+        {
+            if(!Character.isLetter(name.charAt(i)) && name.charAt(i)!=' ')
+            {
+                return -100;
+            }
+        }
+
         int year=0;
 
-        if(entry.length() != 13 || entry.length() != 11)
+        if(entry.length() != 11)
             return -1;
 
         for(int i=0;i<4;i++)
@@ -61,32 +48,25 @@ public class enterDetail extends AppCompatActivity {
 
         for(int i=0;i<2;i++)
         {
-            if(!Character.isLetter(entry.charAt(i+4)))
+            if(!Character.isLetter(entry.charAt(i + 4)))
+                return  -1;
+        }
+
+        if(!Character.isLetterOrDigit(entry.charAt(6))) return -1;
+        for(int i=0;i<4;i++)
+        {
+            if(!Character.isDigit(entry.charAt(i+7)))
                 return -1;
         }
 
-        if(entry.length()==11) {
-            for(int i=0;i<5;i++)
-            {
-                if(!Character.isDigit(entry.charAt(i+6)))
-                    return -1;
-            }
-        }
-        else if(entry.length()==13)
-        {
-            if(!Character.isLetter(entry.charAt(6))) return -1;
-
-            for(int i=0;i<5;i++)
-            {
-                if(!Character.isDigit(entry.charAt(i+7)))
-                    return -1;
-            }
-        }
 
         if(year > 2015 || year < 2007)
             return -2;
-        else
-            return 1;//Success
+
+
+
+        return 1;
+
     }
 
     @Override
@@ -102,6 +82,7 @@ public class enterDetail extends AppCompatActivity {
         TextView heading = (TextView) findViewById(R.id.enterDetailHead);
         heading.setText("AGENT " + Integer.toString(currentMember));
 
+        String error="";
 
         final Button button = (Button) findViewById(R.id.nextButton);
 
@@ -117,7 +98,7 @@ public class enterDetail extends AppCompatActivity {
                 editable = entrynoField.getText();
                 String entryno = editable == null ? "" : editable.toString();
 
-                if(isEntryNo(entryno)==1 || !name.equals("")) {
+                if(isError(entryno,name)==1) {
 
                     Intent nextActivityBundle;
                     if (currentMember == teamSize)
@@ -129,23 +110,25 @@ public class enterDetail extends AppCompatActivity {
                     detail.putInt("currentmember", currentMember + 1);
                     detail.putString("name" + Integer.toString(currentMember), name);
                     detail.putString("entry" + Integer.toString(currentMember), entryno);
-
                     nextActivityBundle.putExtras(detail);
                     startActivity(nextActivityBundle);
 
                 }
                 else
                 {
-                    String error="";
-                    if(name.equals(""))
-                        error+="Name can't empty..!\n";
-                    if(isEntryNo(entryno)==-1)
-                        error+="Entry No. format is incorrect.";
-                    else if(isEntryNo(entryno)==-2)
-                        error+="Invalid Year in Entry No.";
+                    int error = isError(entryno,name);
 
-                    Toast.makeText(getApplicationContext(),error,Toast.LENGTH_SHORT);
-                }
+                    switch (error)
+                    {
+                        case -200:Toast.makeText(getApplicationContext(),"Name Can't Be Empty",Toast.LENGTH_LONG).show();break;
+                        case -300:Toast.makeText(getApplicationContext(),"Entry No Can't Be Empty",Toast.LENGTH_LONG).show();break;
+                        case -100:Toast.makeText(getApplicationContext(),"Name must contain only letters and spaces",Toast.LENGTH_LONG).show();break;
+                        case -1:Toast.makeText(getApplicationContext(),"Entry No format is incorrect",Toast.LENGTH_LONG).show();break;
+                        case -2:Toast.makeText(getApplicationContext(),"Invalid Entry year",Toast.LENGTH_LONG).show();break;
+                        case 1:Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_LONG).show();break;
+                    }
+                    }
+
             }
         });
     }
