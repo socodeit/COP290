@@ -16,34 +16,7 @@ public class enterDetail extends AppCompatActivity {
     Bundle detail;
     int currentMember = 1;      //Member whose detail is going to be entered
     int teamSize = 3;
-    int errorcode;
 
-    //    public void nextAgent(View view)
-//    {
-//        Intent nextActivityBundle;
-//        if(currentMember == teamSize)
-//            nextActivityBundle = new Intent(this,status.class);
-//        else
-//            nextActivityBundle = new Intent(this,enterDetail.class);
-//
-//        EditText nameField=(EditText)findViewById(R.id.name);
-//        Editable editable = nameField.getText();
-//        String name = editable == null ? "" : editable.toString();
-//
-//        EditText entrynoField=(EditText)findViewById(R.id.entryno);
-//        editable = entrynoField.getText();
-//        String entryno = editable == null ? "" : editable.toString();
-//
-//
-//        detail.putInt("currentmember",currentMember+1);
-//        detail.putString("name"+Integer.toString(currentMember),name);
-//        detail.putString("entryno"+Integer.toString(currentMember),entryno);
-//
-//        nextActivityBundle.putExtras(detail);
-//
-//        startActivity(nextActivityBundle);
-//
-//    }
 
     int isError(String entry,String name)
     {
@@ -106,7 +79,6 @@ public class enterDetail extends AppCompatActivity {
         detail = intent.getExtras();
             currentMember = detail.getInt("currentmember");
             teamSize = detail.getInt("teamsize");
-            errorcode = detail.getInt("error");
         TextView heading = (TextView) findViewById(R.id.enterDetailHead);
         heading.setText("AGENT " + Integer.toString(currentMember));
 
