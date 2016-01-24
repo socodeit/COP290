@@ -22,17 +22,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class confirmDetails extends AppCompatActivity {
-
-    //private RequestQueue requestQueue =Volley.newRequestQueue(this);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm_details);
 
+        //getting bundle coming from intent
         Intent preActivity = getIntent();
         Bundle detail = preActivity.getExtras();
-        final Map<String,String> params = new HashMap<>();
+
+        //Setting up TextView to show entered details
         final TextView teamName = (TextView)findViewById(R.id.teamName);
         final TextView name1=(TextView)findViewById(R.id.agent1name);
         final TextView name2=(TextView)findViewById(R.id.agent2name);
@@ -41,13 +40,15 @@ public class confirmDetails extends AppCompatActivity {
         final TextView entry2 = (TextView) findViewById(R.id.agent2entryno);
         final TextView entry3 = (TextView) findViewById(R.id.agent3entryno);
 
-
+        //Showing data from "detail" bundle
         teamName.setText(detail.getString("teamname"));
         name1.setText(detail.getString("name1"));
         name2.setText(detail.getString("name2"));
         entry1.setText(detail.getString("entry1"));
         entry2.setText(detail.getString("entry2"));
 
+        //Creating Map in order to send data to server.
+        final Map<String,String> params = new HashMap<>();
         params.put("teamname",detail.getString("teamname"));
         params.put("name1",detail.getString("name1"));
         params.put("entry1",detail.getString("entry1"));
@@ -69,17 +70,14 @@ public class confirmDetails extends AppCompatActivity {
         }
 
 
-        final String url = "http://agni.iitd.ernet.in/cop290/assign0/register/";
-        final RequestQueue requestQueue =Volley.newRequestQueue(this);
-
-        //final JSONObject data = new JSONObject(params);
-        //Toast.makeText(getApplicationContext(),data.toString(),Toast.LENGTH_LONG).show();
+        final String url = "http://agni.iitd.ernet.in/cop290/assign0/register/";            //Server where request will be sent.
+        final RequestQueue requestQueue =Volley.newRequestQueue(this);                      //Request queue to process request.
 
         Button confirmButton = (Button) findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //Creating new String Request Object
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
 
                     @Override
