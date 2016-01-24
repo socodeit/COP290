@@ -11,6 +11,7 @@ import com.rap.team.teamSize;
 
 public class MainActivity extends AppCompatActivity {
 
+
     MediaPlayer mysound;                                // Object for playing sound in background
 
     @Override
@@ -18,8 +19,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mysound = MediaPlayer.create(this, R.raw.bgm);
-        mysound.start();
+        mysound.start();                                //Sound starts
 
+        //Accept button moves to next activity
         Button acceptbutton = (Button) findViewById(R.id.acceptbuttom);
         acceptbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,5 +30,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 0);
             }
         });
+
+        //Command to kill all activities as a result of pressing self destruct
+        if (getIntent().getBooleanExtra("Exit", false)){
+            finish();
+            android.os.Process.killProcess(android.os.Process.myPid());
+        }
     }
 }
