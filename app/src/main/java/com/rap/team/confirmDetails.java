@@ -72,8 +72,8 @@ public class confirmDetails extends AppCompatActivity {
         final String url = "http://agni.iitd.ernet.in/cop290/assign0/register/";
         final RequestQueue requestQueue =Volley.newRequestQueue(this);
 
-        final JSONObject data = new JSONObject(params);
-        Toast.makeText(getApplicationContext(),data.toString(),Toast.LENGTH_LONG).show();
+        //final JSONObject data = new JSONObject(params);
+        //Toast.makeText(getApplicationContext(),data.toString(),Toast.LENGTH_LONG).show();
 
         Button confirmButton = (Button) findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(new View.OnClickListener() {

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.rap.team.teamregistration.R;
 
@@ -37,12 +38,19 @@ public class teamSize extends AppCompatActivity {
                 EditText nameField = (EditText) findViewById(R.id.teamnam);
                 Editable editable = nameField.getText();
                 String name = editable == null ? "" : editable.toString();
-                bundle.putString("teamname",name);
-                bundle.putInt("teamsize",a);
-                bundle.putInt("currentmember",1);
-                Intent intent = new Intent(teamSize.this, com.rap.team.enterDetail.class);
-                intent.putExtras(bundle);
-                startActivity(intent);
+                if(name.length()==0)
+                {
+                    Toast.makeText(getApplicationContext(),"Enter a teamname",Toast.LENGTH_LONG).show();
+                }
+                else {
+                    bundle.putString("teamname", name);
+                    bundle.putInt("teamsize", a);
+                    bundle.putInt("currentmember", 1);
+                    bundle.putInt("error", 1);
+                    Intent intent = new Intent(teamSize.this, com.rap.team.enterDetail.class);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
             }
         });
     }

@@ -11,7 +11,7 @@ import com.rap.team.teamSize;
 
 public class MainActivity extends AppCompatActivity {
 
-    MediaPlayer mysound;
+    MediaPlayer mysound;                                // Object for playing sound in background
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
