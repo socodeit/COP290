@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.text.Editable;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.rap.team.teamregistration.R;
 
@@ -42,6 +43,52 @@ public class enterDetail extends AppCompatActivity {
 //        startActivity(nextActivityBundle);
 //
 //    }
+
+    int isEntryNo(String entry)
+    {
+        int year=0;
+
+        if(entry.length() != 13 || entry.length() != 11)
+            return -1;
+
+        for(int i=0;i<4;i++)
+        {
+            if(!Character.isDigit(entry.charAt(i)))
+                return -1;
+            else
+                year  = year*10 + entry.charAt(i)-'0';
+        }
+
+        for(int i=0;i<2;i++)
+        {
+            if(!Character.isLetter(entry.charAt(i+4)))
+                return -1;
+        }
+
+        if(entry.length()==11) {
+            for(int i=0;i<5;i++)
+            {
+                if(!Character.isDigit(entry.charAt(i+6)))
+                    return -1;
+            }
+        }
+        else if(entry.length()==13)
+        {
+            if(!Character.isLetter(entry.charAt(6))) return -1;
+
+            for(int i=0;i<5;i++)
+            {
+                if(!Character.isDigit(entry.charAt(i+7)))
+                    return -1;
+            }
+        }
+
+        if(year > 2015 || year < 2007)
+            return -2;
+        else
+            return 1;//Success
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,11 +108,6 @@ public class enterDetail extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent nextActivityBundle;
-                if (currentMember == teamSize)
-                    nextActivityBundle = new Intent(enterDetail.this, confirmDetails.class);
-                else
-                    nextActivityBundle = new Intent(enterDetail.this, enterDetail.class);
 
                 EditText nameField = (EditText) findViewById(R.id.name);
                 Editable editable = nameField.getText();
@@ -75,14 +117,35 @@ public class enterDetail extends AppCompatActivity {
                 editable = entrynoField.getText();
                 String entryno = editable == null ? "" : editable.toString();
 
-                detail.putInt("teamsize", teamSize);
-                detail.putInt("currentmember", currentMember + 1);
-                detail.putString("name" + Integer.toString(currentMember), name);
-                detail.putString("entry" + Integer.toString(currentMember), entryno);
+                if(isEntryNo(entryno)==1 || !name.equals("")) {
 
-                nextActivityBundle.putExtras(detail);
+                    Intent nextActivityBundle;
+                    if (currentMember == teamSize)
+                        nextActivityBundle = new Intent(enterDetail.this, confirmDetails.class);
+                    else
+                        nextActivityBundle = new Intent(enterDetail.this, enterDetail.class);
 
-                startActivity(nextActivityBundle);
+                    detail.putInt("teamsize", teamSize);
+                    detail.putInt("currentmember", currentMember + 1);
+                    detail.putString("name" + Integer.toString(currentMember), name);
+                    detail.putString("entry" + Integer.toString(currentMember), entryno);
+
+                    nextActivityBundle.putExtras(detail);
+                    startActivity(nextActivityBundle);
+
+                }
+                else
+                {
+                    String error="";
+                    if(name.equals(""))
+                        error+="Name can't empty..!\n";
+                    if(isEntryNo(entryno)==-1)
+                        error+="Entry No. format is incorrect.";
+                    else if(isEntryNo(entryno)==-2)
+                        error+="Invalid Year in Entry No.";
+
+                    Toast.makeText(getApplicationContext(),error,Toast.LENGTH_SHORT);
+                }
             }
         });
     }

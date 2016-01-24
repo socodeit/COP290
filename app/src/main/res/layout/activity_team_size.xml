@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,78 +10,71 @@
     android:alpha="1"
     tools:context="com.rap.team.teamSize"
     android:background="@drawable/a"
-    >
+    android:orientation="vertical"
+    android:weightSum="6">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Team Size"
-        android:alpha="1"
-        android:id="@+id/total"
-        android:textSize="70dp"
-        android:textColor="#35ef20"
-        android:textStyle="bold"
-        android:layout_gravity="center_vertical"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-
-    <RadioGroup
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="263dp"
-        android:weightSum="1"
-        android:id="@+id/radioGroup"
-        android:layout_alignLeft="@+id/total"
-        android:layout_alignStart="@+id/total"
-        android:layout_below="@+id/total">
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="130dp"
-            android:text="3 AGENTS"
-            android:textSize="35sp"
-            android:textColor="#000000"
-            android:id="@+id/button3"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            android:checked="false" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="61dp"
-            android:text="2 AGENTS"
-            android:textSize="35sp"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:id="@+id/button2"
-            android:layout_gravity="center_horizontal"
-
-            android:checked="true" />
+        android:layout_height="0dp"
+        android:layout_weight="3">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Team Name"
+            android:text="Team Size"
             android:alpha="1"
-            android:id="@+id/name"
-            android:textSize="62dp"
+            android:id="@+id/total"
+            android:textSize="70dp"
             android:textColor="#35ef20"
             android:textStyle="bold"
-            android:layout_below="@+id/radioGroup"
-            android:layout_alignLeft="@+id/radioGroup"
-            android:layout_alignStart="@+id/radioGroup"
-            android:autoText="false" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
 
-    </RadioGroup>
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="263dp"
+            android:weightSum="1"
+            android:id="@+id/radioGroup"
+            android:layout_alignLeft="@+id/total"
+            android:layout_alignStart="@+id/total"
+            android:layout_below="@+id/total">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="130dp"
+                android:text="3 AGENTS"
+                android:textSize="35sp"
+                android:textColor="#000000"
+                android:id="@+id/button3"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:checked="false" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="61dp"
+                android:text="2 AGENTS"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:id="@+id/button2"
+                android:layout_gravity="center_horizontal"
+
+                android:checked="true" />
+
+        </RadioGroup>
+    </LinearLayout>
+
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_below="@+id/radioGroup"
-        android:weightSum="2">
+        android:weightSum="2"
+        android:layout_weight="2">
 
         <EditText
             android:layout_width="match_parent"
@@ -94,6 +87,28 @@
             android:theme="@style/whiteBottomLine"
             android:inputType="text"
             android:layout_weight="0.6" />
+
+        <TextView
+            android:layout_width="371dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Team Name"
+            android:alpha="1"
+            android:id="@+id/name"
+            android:textSize="62dp"
+            android:textColor="#35ef20"
+            android:textStyle="bold"
+            android:layout_below="@+id/radioGroup"
+            android:layout_alignLeft="@+id/radioGroup"
+            android:layout_alignStart="@+id/radioGroup"
+            android:autoText="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <Button
             android:layout_width="wrap_content"
@@ -110,4 +125,4 @@
             android:layout_weight="1.4" />
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>
